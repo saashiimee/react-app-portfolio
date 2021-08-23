@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Header from './components/Header';
+import Particles from './components/Particles';
+import About from './components/About';
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const animation_set = {
+  animate: true,
+  duration: 750,
+  once: false,
+};
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: animation_set.duration,
+      once: animation_set.once,
+      disable: !animation_set.animate,
+    });
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Particles/>
+      <About/>
     </div>
   );
 }
